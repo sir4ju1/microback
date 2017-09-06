@@ -19,7 +19,7 @@ glob("app/api/*.js", null, function (er, files) {
   files.forEach(f => {
     var Cls = require(`${appRoot}/${f}`).default
     var cls = new Cls()
-    app.use(cls.gernerate())
+    app.use(cls.generate())
   })
   app.listen(port, () => console.log(`Server Started @ ${port}`))
 })
