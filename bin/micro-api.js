@@ -3,6 +3,7 @@
 var program = require('commander')
 const Koa = require('koa')
 const glob = require('glob')
+global.appRoot = process.env.PWD
 
 program
   .version('0.0.1')
@@ -16,7 +17,7 @@ var host = !!program.host ? program.host : '0.0.0.0',
 const app = new Koa()
 glob("app/api/*.js", null, function (er, files) {
   files.forEach(f => {
-    var Cls = require(f).default
+    var Cls = require(`${appRoot}/${f}`).default
     var cls = new Cls()
     app.use(cls.gernerate())
   })
