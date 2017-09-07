@@ -39,7 +39,9 @@ files.forEach(f => {
     code
   } = babel.transformFileSync(f, {
     plugins: [
-      "transform-es2015-modules-commonjs", [
+      "transform-es2015-modules-commonjs",
+      "transform-decorators",
+      [
         "module-resolver",
         {
           "root": [
