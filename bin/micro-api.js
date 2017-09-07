@@ -62,7 +62,7 @@ files.forEach(f => {
 })
 var apis = glob.sync(appRoot + '/build/app/api/*.js')
 apis.forEach(f => {
-  var Cls = require(f)
+  var Cls = require(f).default
   var cls = new Cls()
   app.use(cls.generate())
 })
