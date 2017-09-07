@@ -40,7 +40,7 @@ files.forEach(f => {
   } = babel.transformFileSync(f, {
     plugins: [
       "transform-es2015-modules-commonjs",
-      "transform-decorators",
+      "transform-decorators-legacy",
       [
         "module-resolver",
         {
