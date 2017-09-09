@@ -1,12 +1,11 @@
 const Koa = require('koa')
-// const glob = require('glob')
+const config = require('../config/paths')
 
 const app = new Koa()
-var appRoot = require('path').resolve(process.cwd())
 // let routes = []
-const normalizedPath = require('path').join(appRoot, 'app/api')
+const normalizedPath = require('path').join(config.rootPath, 'app/api')
 require('fs').readdirSync(normalizedPath).forEach(function (file) {
-  var Cls = require(`/${normalizedPath}/${file}`).default
+  var Cls = require(`../../../${file}`).default
   var cls = new Cls()
   app.use(cls.generate())
 })

@@ -25,11 +25,11 @@ module.exports = (options) => {
     },
     resolve: {
       extensions: ['.js', '.json'],
-      modules: [config.userNodeModulesPath, path.resolve(__dirname, '../node_modules')]
+      modules: [config.userNodeModulesPath, config.appPath, path.resolve(__dirname, '../node_modules')]
     },
     resolveLoader: {
-      modules: [config.userNodeModulesPath, path.resolve(__dirname, '../node_modules')]
-    },
+      modules: [config.userNodeModulesPath, config.appPath, path.resolve(__dirname, '../node_modules')]
+    },  
     node: {
       __filename: true,
       __dirname: true
