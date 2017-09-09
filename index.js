@@ -1,5 +1,5 @@
 
 const app = require('./src')
-const rest = require('./src/restgen')
+const { RestGen, route } = require('./src/restgen')
 
-module.exports = { app, ...rest }
+module.exports = { app, RestGen, route }
