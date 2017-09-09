@@ -1,15 +1,19 @@
 const Koa = require('koa')
-const colors = require('colors')
-const app = new Koa()
-var r = require.context('../../../app/api', true, /\.js$/)
+const config = require('../config/paths')
 
-r.keys().forEach(f => {
-  var Cls = r(f).default
+const app = new Koa()
+// let routes = []
+const normalizedPath = require('path').join(config.rootPath, 'app/api')
+require('fs').readdirSync(normalizedPath).forEach(function (file) {
+  var Cls = require(`../../../${file}`).default
   var cls = new Cls()
   app.use(cls.generate())
 })
 
-
-app.listen(2000, () => console.log('OK'.bgGreen, `Server Started: http://localhost:2000`.underline.green))
-
+// const app = (app) => {
+//   routes.forEach(route => {
+//     app.use(route)
+//   })
+// }
+app.listen(2000)
 module.exports = app
