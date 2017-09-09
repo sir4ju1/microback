@@ -6,7 +6,7 @@ var appRoot = require('path').resolve(process.cwd())
 // let routes = []
 const normalizedPath = require('path').join(appRoot, 'app/api')
 require('fs').readdirSync(normalizedPath).forEach(function (file) {
-  var Cls = require(`${normalizedPath}/${file}`).default
+  var Cls = require(`/${normalizedPath}/${file}`).default
   var cls = new Cls()
   app.use(cls.generate())
 })

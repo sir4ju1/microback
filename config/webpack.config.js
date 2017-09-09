@@ -66,7 +66,32 @@ module.exports = (options) => {
           exclude: [
             /node_modules/,
             config.buildPath
-          ]
+          ],
+          options: {
+            presets: [
+              [
+                "env",
+                {
+                  "targets": { "node": "8" }
+                }
+              ]
+            ],
+            plugins: [
+              "transform-decorators-legacy",
+              [
+                "module-resolver",
+                {
+                  "root": [
+                    "./app"
+                  ],
+                  "alias": {
+                    "helper": "./app/helpers",
+                    "model": "./app/models"
+                  }
+                }
+              ]
+            ]
+          }
         }
       ]
     },
