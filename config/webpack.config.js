@@ -1,42 +1,17 @@
 const fs = require('fs')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
-// const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const config = require('./paths')
 const path = require('path')
-const babelPreset = require('../babel')
+
 
 // This is the Webpack configuration.
 // It is focused on developer experience and fast rebuilds.
 module.exports = (options) => {
-  const babelRcPath = path.resolve('.babelrc')
-  const hasBabelRc = fs.existsSync(babelRcPath)
-  const mainBabelOptions = {
-    babelrc: true,
-    cacheDirectory: true,
-    presets: []
-  }
-
-  if (hasBabelRc) {
-    console.log('> Using .babelrc defined in your app root')
-  } else {
-    mainBabelOptions.presets.push(require.resolve('../babel'))
-  }
-
   return {
-    // Webpack can target multiple environments such as `node`,
-    // `browser`, and even `electron`. Since Backpack is focused on Node,
-    // we set the default target accordingly.
     target: 'node',
-    // The benefit of Webpack over just using babel-cli or babel-node
-    // command is sourcemap support. Although it slows down compilation,
-    // it makes debugging dramatically easier.
     devtool: 'source-map',
-    // Webpack allows you to define externals - modules that should not be
-    // bundled. When bundling with Webpack for the backend - you usually
-    // don't want to bundle its node_modules dependencies. This creates an externals
-    // function that ignores node_modules when bundling in Webpack.
-    // @see https://github.com/liady/webpack-node-externals
     externals: nodeExternals({
       whitelist: [
         /\.(eot|woff|woff2|ttf|otf)$/,
@@ -45,14 +20,9 @@ module.exports = (options) => {
         /\.(css|scss|sass|less|styl)$/,
       ]
     }),
-    // As of Webpack 2 beta, Webpack provides performance hints.
-    // Since we are not targeting a browser, bundle size is not relevant.
-    // Additionally, the performance hints clutter up our nice error messages.
     performance: {
       hints: false
     },
-    // Since we are wrapping our own webpack config, we need to properly resolve
-    // Backpack's and the given user's node_modules without conflict.
     resolve: {
       extensions: ['.js', '.json'],
       modules: [config.userNodeModulesPath, path.resolve(__dirname, '../node_modules')]
@@ -66,7 +36,7 @@ module.exports = (options) => {
     },
     entry: {
       main: [
-        `${config.serverSrcPath}/index.js`
+        path.resolve(__dirname, '../src/index.js')
       ],
     },
     // This sets the default output file path, name, and compile target
@@ -96,8 +66,7 @@ module.exports = (options) => {
           exclude: [
             /node_modules/,
             config.buildPath
-          ],
-          options: mainBabelOptions
+          ]
         }
       ]
     },
@@ -124,13 +93,13 @@ module.exports = (options) => {
           : require.resolve('source-map-support/register')
         }')`
       }),
-      // // The FriendlyErrorsWebpackPlugin (when combined with source-maps)
-      // // gives Backpack its human-readable error messages.
-      // new FriendlyErrorsWebpackPlugin({
-      //   clearConsole: options.env === 'development',
-      // }),
-      // // The NoEmitOnErrorsPlugin plugin prevents Webpack
-      // // from printing out compile time stats to the console.
+      // The FriendlyErrorsWebpackPlugin (when combined with source-maps)
+      // gives Backpack its human-readable error messages.
+      new FriendlyErrorsWebpackPlugin({
+        clearConsole: options.env === 'development',
+      }),
+      // The NoEmitOnErrorsPlugin plugin prevents Webpack
+      // from printing out compile time stats to the console.
       new webpack.NoEmitOnErrorsPlugin()
     ]
   }
