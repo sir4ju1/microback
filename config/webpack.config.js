@@ -82,7 +82,7 @@ module.exports = (options) => {
                     "./app"
                   ],
                   "alias": {
-                    "helper": "./app/helpers",
+                    "logic": "./app/logic",
                     "model": "./app/models"
                   }
                 }
