@@ -117,7 +117,7 @@ class RestGen {
           }
           route.path = `/${this.path}/${route.path}`
           if (this.noauths && this.noauths[fun]) {
-            this.noAuth.push(`/api${routes.path }`)
+            this.noAuth.push(`/api${route.path}`)
           }
           switch (route.method) {
             case 'post':
