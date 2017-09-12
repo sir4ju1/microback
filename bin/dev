@@ -10,8 +10,8 @@ const options = {
   env: 'development'
 }
 
-const defaultConfig = require('../config/webpack.config')
-const configPath = path.resolve('backpack.config.js')
+const defaultConfig = require('../config/webpack')
+const configPath = path.resolve('api.config.js')
 let userConfig = {}
 
 if (fs.existsSync(configPath)) {
