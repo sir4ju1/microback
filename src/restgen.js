@@ -133,10 +133,8 @@ class RestGen {
           break
       }
     })
-    return router.routes()
-  }
-  getNoAuths () {
-    return this.noAuth
+    const routes = router.routes()
+    return { routes, noAuth: this.noAuth }
   }
 }
 

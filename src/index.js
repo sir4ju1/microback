@@ -17,8 +17,9 @@ var routes = []
 require('fs').readdirSync(normalizedPath).forEach(function (file) {
   var Cls = require(`../../../app/api/${file}`).default
   var cls = new Cls()
-  routes.push(cls.generate())
-  noAuthList.concat(cls.getNoAuths())
+  const route = cls.generate()
+  routes.push(route.routes)
+  noAuthList.concat(route.noAuth)
 })
 
 app.use(cors())
