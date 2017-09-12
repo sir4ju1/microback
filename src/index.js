@@ -19,7 +19,7 @@ require('fs').readdirSync(normalizedPath).forEach(function (file) {
   var cls = new Cls()
   const route = cls.generate()
   routes.push(route.routes)
-  noAuthList.concat(route.noAuth)
+  noAuthList.push(...route.noAuth)
 })
 
 app.use(cors())
