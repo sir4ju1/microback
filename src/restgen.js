@@ -30,11 +30,13 @@ function route (method, ...args) {
     target['routes'][name] = { method, path }
   }
 }
-function noauth (target, name) {
-  if (!target['noauths']) {
-    target['noauths'] = {}
+function noauth () {
+  return function (target, name) {
+    if (!target['noauths']) {
+      target['noauths'] = {}
+    }
+    target['noauths'][name] = true
   }
-  target['noauths'][name] = true
 }
 class RestGen {
   constructor (path, model) {
