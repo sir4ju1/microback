@@ -7,7 +7,7 @@ mongoose.connect(process.env.MONGODB, {
 mongoose.Promise = Promise
 
 module.exports = function (model) {
-  const schema = mongoose.schema(model.schema)
+  const schema = mongoose.Schema(model.schema)
   var mo = mongoose.model(model.name, schema)
   mo.ensureIndexes()
   return mo
