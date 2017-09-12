@@ -1,10 +1,12 @@
+const Koa = require('koa')
 const path = require('path')
 const chalk = require('chalk')
 const dotenv = require('dotenv')
 const cors = require('kcors')
 const jwt = require('koa-jwt')
 const config = require('../config/paths')
-const app = require('../').app
+const app = new Koa()
+
 
 dotenv.config()
 const port = process.env.PORT || 2000
@@ -32,4 +34,8 @@ if (process.env.AUTH) {
 }
 routes.forEach(r => app.use(r))
 
-app.listen(port, () => console.log(chalk.bgGreen('  OK  '), chalk.green(`Server started`), chalk.dim(`[http://localhost:${port}]`)))
+if (!module.parent) {
+  app.listen(port, () => console.log(chalk.bgGreen('  OK  '), chalk.green(`Server started`), chalk.dim(`[http://localhost:${port}]`)))
+}
+
+module.exports = app
