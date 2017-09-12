@@ -30,10 +30,17 @@ function route (method, ...args) {
     target['routes'][name] = { method, path }
   }
 }
+function noauth (target, name) {
+  if (!target['noauths']) {
+    target['noauths'] = {}
+  }
+  target['noauths'][name] = true
+}
 class RestGen {
   constructor (path, model) {
     this.path = path
     this.model = model
+    this.noAuth = []
   }
   async find (ctx) {
     try {
@@ -86,13 +93,11 @@ class RestGen {
    */
   generate () {
     var self = this
-    if (this.model) {
-      router.get(`/${this.path}`, this.find.bind(this))
-      router.get(`/${this.path}/:id`, this.findOne.bind(this))
-      router.post(`/${this.path}`, body, this.create.bind(this))
-      router.put(`/${this.path}/:id`, body, this.update.bind(this))
-      router.delete(`/${this.path}/:id`, this.remove.bind(this))
-    }
+    router.get(`/${this.path}`, this.find.bind(this))
+    router.get(`/${this.path}/:id`, this.findOne.bind(this))
+    router.post(`/${this.path}`, body, this.create.bind(this))
+    router.put(`/${this.path}/:id`, body, this.update.bind(this))
+    router.delete(`/${this.path}/:id`, this.remove.bind(this))
     let list = Object.getOwnPropertyNames(Object.getPrototypeOf(this)).filter(f => {
       if (typeof (self[f]) === 'function') {
         return f
@@ -103,21 +108,15 @@ class RestGen {
         case 'constructor':
         case 'route':
           break
-        case 'find':
-          router[fun](`/${this.path}`, this[fun].bind(this))
-          break
-        case 'post':
-        case 'put':
-        case 'patch':
-        case 'delete':
-          router[fun](`/${this.path}`, body, this[fun].bind(this))
-          break
         default:
           let route = this.routes && this.routes[fun] ? this.routes[fun] : {
             method: fun.includes('post') ? 'post' : fun.includes('put') ? 'put' : 'get',
             path: fun
           }
           route.path = `/${this.path}/${route.path}`
+          if (this.noauths && this.noauths[fun]) {
+            this.noAuth.push(`/api${routes.path }`)
+          }
           switch (route.method) {
             case 'post':
             case 'put':
@@ -134,6 +133,9 @@ class RestGen {
     })
     return router.routes()
   }
+  getNoAuths () {
+    return this.noAuth
+  }
 }
 
-module.exports = { route, RestGen }
+module.exports = { route, noauth, RestGen }
