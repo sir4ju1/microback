@@ -33,7 +33,7 @@ module.exports = (options) => {
     },
     entry: {
       main: [
-        path.resolve(__dirname, '../index.js')
+        path.resolve(__dirname, '../lib/server.js')
       ],
     },
     // This sets the default output file path, name, and compile target
