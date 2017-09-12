@@ -8,7 +8,7 @@ const chalk = require('chalk')
 const dotenv = require('dotenv')
 const cors = require('kcors')
 const jwt = require('koa-jwt')
-const config = require('../config/paths')
+const config = require('./config/paths')
 const app = new Koa()
 
 
@@ -21,7 +21,7 @@ var noAuthList = []
 var routes = []
 
 require('fs').readdirSync(normalizedPath).forEach(function (file) {
-  var Cls = require(`../../../app/api/${file}`).default
+  var Cls = require(`../../app/api/${file}`).default
   var cls = new Cls()
   const route = cls.generate()
   routes.push(route.routes)
