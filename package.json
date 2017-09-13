@@ -1,14 +1,14 @@
 {
-  "name": "micro-api",
+  "name": "microback",
   "version": "0.0.1",
-  "description": "",
+  "description": "Create simple api server using koa, mongoose, webpack",
   "main": "index.js",
   "preferGlobal": true,
-  "bin": "./bin/micro-api",
+  "bin": "./bin/microback",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Sirajul",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.26.0",
