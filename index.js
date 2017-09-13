@@ -1,6 +1,8 @@
 const { RestGen, route, noauth } = require('./lib/restgen')
 const auth = require('./lib/auth')
 const model = require('./lib/model')
-const app = require('./lib/server')
+const server = function () {
+  return require('./lib/server').listen()
+}
 
-module.exports = { app, RestGen, route, noauth, auth, model }
+module.exports = { server, RestGen, route, noauth, auth, model }
