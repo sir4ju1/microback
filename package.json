@@ -5,7 +5,9 @@
   "main": "index.js",
   "preferGlobal": true,
   "bin": {
-    "microback": "./bin/microback"
+    "microback": "./bin/microback",
+    "dev": "./bin/dev",
+    "build": "./bin/build"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
