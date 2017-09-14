@@ -4,7 +4,7 @@
   "description": "Create simple api server using koa, mongoose, webpack",
   "main": "index.js",
   "preferGlobal": true,
-  "bin": "./bin",
+  "bin": "./bin/*",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
