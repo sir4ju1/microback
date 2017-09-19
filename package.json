@@ -33,6 +33,7 @@
     "mongoose": "^4.11.11",
     "mongoose-paginate": "^5.0.3",
     "nodemon": "^1.12.0",
+    "pluralize": "^7.0.0",
     "ramda": "^0.24.1",
     "webpack": "^3.5.6",
     "webpack-node-externals": "^1.6.0"
