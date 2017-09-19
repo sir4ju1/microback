@@ -1,6 +1,6 @@
 {
   "name": "microback",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create simple api server using koa, mongoose, webpack",
   "main": "index.js",
   "preferGlobal": true,
@@ -31,6 +31,7 @@
     "koa-jwt": "^3.2.2",
     "koa-router": "^7.2.1",
     "mongoose": "^4.11.11",
+    "mongoose-paginate": "^5.0.3",
     "nodemon": "^1.12.0",
     "ramda": "^0.24.1",
     "webpack": "^3.5.6",
