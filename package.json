@@ -1,8 +1,8 @@
 {
   "name": "microback",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Create simple api server using koa, mongoose, webpack",
-  "main": "index.js",
+  "main": "index.js"66,
   "preferGlobal": true,
   "bin": {
     "microback": "./bin/microback",
