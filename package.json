@@ -1,6 +1,6 @@
 {
   "name": "microback",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Create simple api server using koa, mongoose, webpack for REST and Websocket",
   "main": "index.js",
   "preferGlobal": true,
