@@ -1,9 +1,10 @@
 import RouteProp from '../interfaces/RouteProp';
 import Router from '../global/Router';
+import * as dotenv from 'dotenv';
 import { Context } from 'koa';
 import * as koaBody from 'koa-body';
 const body = koaBody({ multipart: true });
-
+dotenv.config();
 import * as koaJwt from 'koa-jwt';
 const jwt = koaJwt({
   secret: process.env.SECUREKEY || 'my-key'
