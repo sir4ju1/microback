@@ -6,11 +6,12 @@ import * as path from 'path';
 import chalk from 'chalk';
 
 import * as koa from 'koa';
+import * as cors from 'kcors';
+const app = new koa();
+app.use(cors());
 
 export function createServer (controllerPath: string, port?: number, host?: string) {
-
-  const paths = fs.readdirSync(controllerPath);
-  const app = new koa();
+  const paths = fs.readdirSync(controllerPath);  
   paths.forEach(p => {
     const cPath = path.join('~', controllerPath, p);
     const obj = require(cPath).default;
