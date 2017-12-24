@@ -6,6 +6,7 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "dotenv": "^4.0.0",
+    "kcors": "^2.2.1",
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
     "koa-jwt": "^3.3.0",
