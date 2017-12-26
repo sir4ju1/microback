@@ -9,9 +9,11 @@ const fs = require("fs");
 const path = require("path");
 const chalk_1 = require("chalk");
 const koa = require("koa");
+const cors = require("kcors");
+const app = new koa();
+app.use(cors());
 function createServer(controllerPath, port, host) {
     const paths = fs.readdirSync(controllerPath);
-    const app = new koa();
     paths.forEach(p => {
         const cPath = path.join('~', controllerPath, p);
         const obj = require(cPath).default;
