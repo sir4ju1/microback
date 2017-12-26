@@ -22,7 +22,12 @@ export default class RestGen {
         args.push(body);
       }
       const action = async (ctx: Context) => {
-        ctx.body = await target[k](ctx);
+        let args = {
+          body: (ctx.request as any).body,
+          params: ctx.params,
+          query: ctx.query
+        }
+        ctx.body = await target[k](args);
       }
       args.push(action);
       router[v.method](...args);
