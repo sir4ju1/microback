@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Router_1 = require("../global/Router");
 const dotenv = require("dotenv");
 const koaBody = require("koa-body");
-const body = koaBody({ multipart: true });
+const body = koaBody({ multipart: true, json: true });
 dotenv.config();
 const koaJwt = require("koa-jwt");
 const jwt = koaJwt({

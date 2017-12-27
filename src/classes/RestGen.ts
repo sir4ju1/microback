@@ -3,7 +3,7 @@ import Router from '../global/Router';
 import * as dotenv from 'dotenv';
 import { Context } from 'koa';
 import * as koaBody from 'koa-body';
-const body = koaBody({ multipart: true });
+const body = koaBody({ multipart: true, json: true });
 dotenv.config();
 import * as koaJwt from 'koa-jwt';
 const jwt = koaJwt({
