@@ -4,6 +4,8 @@ import Router from './global/Router';
 import * as fs from 'fs';
 import * as path from 'path';
 import chalk from 'chalk';
+import * as dotenv from 'dotenv';
+dotenv.config()
 
 import * as koa from 'koa';
 import * as cors from 'kcors';
@@ -28,4 +30,4 @@ export function createServer (controllerPath: string, port?: number, host?: stri
 
 export * from './decorators/Route';
 export * from './decorators/Controller';
-
+export * from './classes/Auth'

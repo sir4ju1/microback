@@ -8,6 +8,8 @@ const Router_1 = require("./global/Router");
 const fs = require("fs");
 const path = require("path");
 const chalk_1 = require("chalk");
+const dotenv = require("dotenv");
+dotenv.config();
 const koa = require("koa");
 const cors = require("kcors");
 const app = new koa();
@@ -28,4 +30,5 @@ function createServer(controllerPath, port, host) {
 exports.createServer = createServer;
 __export(require("./decorators/Route"));
 __export(require("./decorators/Controller"));
+__export(require("./classes/Auth"));
 //# sourceMappingURL=index.js.map
