@@ -25,7 +25,8 @@ export default class RestGen {
         let args = {
           body: (ctx.request as any).body,
           params: ctx.params,
-          query: ctx.query
+          query: ctx.query,
+          state: ctx.state
         }
         ctx.body = await target[k](args);
       }
