@@ -5,6 +5,7 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const RestGen_1 = require("./classes/RestGen");
 const Router_1 = require("./global/Router");
+const Auth_1 = require("./classes/Auth");
 const fs = require("fs");
 const path = require("path");
 const chalk_1 = require("chalk");
@@ -30,5 +31,5 @@ function createServer(controllerPath, port, host) {
 exports.createServer = createServer;
 __export(require("./decorators/Route"));
 __export(require("./decorators/Controller"));
-__export(require("./classes/Auth"));
+exports.Auth = Auth_1.default;
 //# sourceMappingURL=index.js.map

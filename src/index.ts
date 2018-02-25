@@ -1,5 +1,6 @@
 import RestGen from './classes/RestGen';
 import Router from './global/Router';
+import AuthType from './classes/Auth';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -30,4 +31,5 @@ export function createServer (controllerPath: string, port?: number, host?: stri
 
 export * from './decorators/Route';
 export * from './decorators/Controller';
-export * from './classes/Auth'
+
+export const Auth = AuthType;
